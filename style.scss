@@ -1,0 +1,31 @@
+$FuenteCaja: cursive;
+$ListaCaja:(Ancho:200px, Largo:200px, Fondo:Blue);
+$Plantilla:(Fondo:#ecececee, Letra:#000, Ancho:100px, Largo:100px);
+@use "sass:map";
+@mixin tamanoCaja($arg:$Plantilla) {
+    $data: map-merge($Plantilla,$arg);
+    background: map-get($data, "Fondo");
+    color: map-get($data, "Letra");
+    width: map-get($data, "Ancho");
+    height: map-get($data, "Largo");
+    text-align: center;
+    margin-bottom: 5px;
+    display: inline-block;
+}
+.box{
+    font-family: $FuenteCaja;
+    font-weight: bold;
+    width: 100%;
+    height: 85vh;
+    overflow-y: scroll;
+    display: block;
+    background: #ff000031;
+        @for $i from 1 through 100 {
+            .box-#{$i}{
+                @include tamanoCaja;
+            }
+        }
+        .box-50{
+            @include tamanoCaja($ListaCaja);
+        }
+}
